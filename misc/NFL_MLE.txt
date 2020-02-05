@@ -1,0 +1,177 @@
+
+. clear all
+
+. 
+. import delimited NFLFieldGoals1920scrape.csv
+(15 vars, 1,018 obs)
+
+. 
+. describe
+
+Contains data
+  obs:         1,018                          
+ vars:            15                          
+ size:        54,972                          
+-------------------------------------------------------------------------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------------------------------------------------------------------------
+v1              int     %8.0g                 
+rk              byte    %8.0g                 Rk
+date            str10   %10s                  Date
+tm              str3    %9s                   Tm
+opp             str3    %9s                   Opp
+result          str7    %9s                   Result
+player          str18   %18s                  Player
+dist            byte    %8.0g                 Dist
+good            str1    %9s                   Good.
+blk             str1    %9s                   Blk.
+y               byte    %8.0g                 Y
+b               byte    %8.0g                 B
+year            int     %8.0g                 
+month           byte    %8.0g                 
+season          int     %8.0g                 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Sorted by: 
+     Note: Dataset has changed since last saved.
+
+. 
+. // drop blocked kicks
+. drop if b==1
+(19 observations deleted)
+
+. 
+. generate angle = acos(dist/sqrt(dist^2+(18.5/3)^2/4))
+
+. 
+. // grid search - 
+. generate grid = 0.05+_n/_N*0.01
+
+. 
+. local nobs = _N
+
+. generate ll = .
+(999 missing values generated)
+
+. generate LL = .
+(999 missing values generated)
+
+. quietly forvalues ii = 1/`nobs' {
+
+. // plot the likelihood function
+. twoway (line LL grid)
+
+. graph export NFL_ll.png, replace
+(file NFL_ll.png written in PNG format)
+
+. 
+. // find the maximum on the grid
+. egen rank = rank(LL)
+
+. egen maxrank = max(rank)
+
+. list grid LL if rank==maxrank
+
+     +---------------------+
+     |     grid         LL |
+     |---------------------|
+616. | .0561662   -375.376 |
+     +---------------------+
+
+. 
+. summarize grid if rank==maxrank
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+        grid |          1    .0561662           .   .0561662   .0561662
+
+. local k = r(mean)
+
+. display `k'
+.05616616
+
+. 
+. // plot the model's predictions
+. generate predictions = 1-2*normal(-1/`k'*angle)
+
+. 
+. // sort by angle 
+. sort angle
+
+. 
+. // compare predictions to probit fits
+. probit y dist
+
+Iteration 0:   log likelihood = -449.30503  
+Iteration 1:   log likelihood = -370.37357  
+Iteration 2:   log likelihood = -366.90805  
+Iteration 3:   log likelihood = -366.89928  
+Iteration 4:   log likelihood = -366.89928  
+
+Probit regression                               Number of obs     =        999
+                                                LR chi2(1)        =     164.81
+                                                Prob > chi2       =     0.0000
+Log likelihood = -366.89928                     Pseudo R2         =     0.1834
+
+------------------------------------------------------------------------------
+           y |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        dist |  -.0718488   .0064306   -11.17   0.000    -.0844525   -.0592451
+       _cons |   3.945674    .284677    13.86   0.000     3.387717     4.50363
+------------------------------------------------------------------------------
+
+. predict probitDist, p
+
+. label variable probitDist "Probit distance"
+
+. 
+. probit y angle
+
+Iteration 0:   log likelihood = -449.30503  
+Iteration 1:   log likelihood = -372.19059  
+Iteration 2:   log likelihood =  -364.1424  
+Iteration 3:   log likelihood = -363.98145  
+Iteration 4:   log likelihood = -363.98121  
+Iteration 5:   log likelihood = -363.98121  
+
+Probit regression                               Number of obs     =        999
+                                                LR chi2(1)        =     170.65
+                                                Prob > chi2       =     0.0000
+Log likelihood = -363.98121                     Pseudo R2         =     0.1899
+
+------------------------------------------------------------------------------
+           y |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       angle |   38.15346   3.906938     9.77   0.000       30.496    45.81092
+       _cons |  -1.980349   .2858057    -6.93   0.000    -2.540518    -1.42018
+------------------------------------------------------------------------------
+
+. predict probitAngle, p
+
+. label variable probitAngle "Probit angle"
+
+. 
+. // who made that 63-yard shot?
+. list if dist==63
+
+     +-------------------------------------------------------------------------------------------------------------------------------------+
+  2. |  v1 | rk |       date |  tm | opp |  result |      player | dist | good | blk | y | b | year | month | season |    angle |     grid |
+     | 298 | 28 | 2019-10-20 | DAL | PHI | W 37-10 | Brett Maher |   63 |    Y |   N | 1 | 0 | 2019 |    10 |   2019 | .0489028 | .0528328 |
+     |-------------------------------------------------------------------------+-----------------------------------------------------------|
+     |            ll     |            LL     |     rank     |     maxrank      |     predic~s      |     probit~t      |     probit~e      |
+     |     -.5362217     |     -377.4684     |      307     |         999      |     .6160713      |     .2806866      |     .4544054      |
+     +-------------------------------------------------------------------------------------------------------------------------------------+
+
+. 
+. // plot the predictions alongside the data
+. collapse predictions probit* y, by(dist)
+
+. label variable y "Data"
+
+. twoway (line predictions probit* dist) (scatter y dist)
+
+. graph export NFL_predictions.png, replace
+(file NFL_predictions.png written in PNG format)
+
+. 
+. log close
