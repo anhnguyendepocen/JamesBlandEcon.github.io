@@ -17,6 +17,23 @@
     "last_modified": "2020-03-03T11:37:38-05:00"
   },
   {
+    "path": "posts/2020-03-02-computing-pi/",
+    "title": "Computing pi using random numbers, and assuming that pi = 2",
+    "description": "Throwing simulated darts at a circle within a square",
+    "author": [
+      {
+        "name": "James R Bland",
+        "url": {
+          "https://sites.google.com/site/jamesbland/": {}
+        }
+      }
+    ],
+    "date": "2020-03-03",
+    "categories": [],
+    "preview": "posts/2020-03-02-computing-pi/computing-pi_files/figure-html5/unnamed-chunk-1-1.png",
+    "last_modified": "2020-03-03T13:33:40-05:00"
+  },
+  {
     "path": "posts/2020-02-20-afldistance/",
     "title": "Accounting for kicking range in the AFL shot location data",
     "description": {},
