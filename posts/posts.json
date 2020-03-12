@@ -1,5 +1,24 @@
 [
   {
+    "path": "posts/2020-03-11-longyearbyendrycooking/",
+    "title": "Pizza, beer, potatoes, and tacos at 78° North",
+    "description": "How a town's unhealthy relationship with late-night pizza was remedied by a potato stand.",
+    "author": [
+      {
+        "name": "James Bland",
+        "url": {}
+      },
+      {
+        "name": "Emma Bland",
+        "url": "https://www.unis.no/staff/emma-bland/"
+      }
+    ],
+    "date": "2020-03-12",
+    "categories": [],
+    "preview": "posts/2020-03-11-longyearbyendrycooking/longyearbyendrycooking_files/figure-html5/unnamed-chunk-1-1.png",
+    "last_modified": "2020-03-12T09:08:09-04:00"
+  },
+  {
     "path": "posts/2020-03-02-20200302regressiondiscontinuity/",
     "title": "Simulating a problem with regression discontinuity, and then understanding (part of) it with a DAG",
     "description": "When people get to choose their assignment variable",

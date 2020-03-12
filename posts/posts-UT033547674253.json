@@ -1,0 +1,51 @@
+[
+  {
+    "path": "posts/2020-03-02-20200302regressiondiscontinuity/",
+    "title": "Simulating a problem with regression discontinuity, and then understanding it with a DAG",
+    "description": "When people get to choose their assignment variable",
+    "author": [
+      {
+        "name": "James Bland",
+        "url": {
+          "https://sites.google.com/site/jamesbland/": {}
+        }
+      }
+    ],
+    "date": "2020-03-02",
+    "categories": [],
+    "preview": "posts/2020-03-02-20200302regressiondiscontinuity/20200302regressiondiscontinuity_files/figure-html5/unnamed-chunk-2-1.png",
+    "last_modified": "2020-03-02T16:29:54-05:00"
+  },
+  {
+    "path": "posts/2020-02-20-afldistance/",
+    "title": "Accounting for kicking range in the AFL shot location data",
+    "description": {},
+    "author": [
+      {
+        "name": "James R Bland",
+        "url": {
+          "https://sites.google.com/site/jamesbland/": {}
+        }
+      }
+    ],
+    "date": "2020-02-28",
+    "categories": [],
+    "preview": "posts/2020-02-20-afldistance/afldistance_files/figure-html5/unnamed-chunk-2-1.png",
+    "last_modified": "2020-02-28T15:00:48-05:00"
+  },
+  {
+    "path": "posts/2020-02-20-test2/",
+    "title": "Test2",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Unknown",
+        "url": {}
+      }
+    ],
+    "date": "2020-02-20",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-02-20T12:18:15-05:00"
+  }
+]
