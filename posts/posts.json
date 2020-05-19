@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2020-05-14-visualizing-the-ohio-covid-19-data/",
+    "title": "Visualizing the Ohio COVID-19 data",
+    "description": {},
+    "author": [
+      {
+        "name": "James Bland",
+        "url": {
+          "https://sites.google.com/site/jamesbland/": {}
+        }
+      }
+    ],
+    "date": "2020-05-19",
+    "categories": [],
+    "preview": "posts/2020-05-14-visualizing-the-ohio-covid-19-data/visualizing-the-ohio-covid-19-data_files/figure-html5/unnamed-chunk-3-1.png",
+    "last_modified": "2020-05-19T11:32:54-04:00"
+  },
+  {
     "path": "posts/2020-03-11-longyearbyendrycooking/",
     "title": "Pizza, beer, potatoes, and tacos at 78° North",
     "description": "How a town's unhealthy relationship with late-night pizza was remedied by a potato stand.",
@@ -16,7 +33,7 @@
     "date": "2020-03-14",
     "categories": [],
     "preview": "posts/2020-03-11-longyearbyendrycooking/longyearbyendrycooking_files/figure-html5/unnamed-chunk-1-1.png",
-    "last_modified": "2020-03-14T15:45:38-04:00"
+    "last_modified": "2020-03-14T15:45:39-04:00"
   },
   {
     "path": "posts/2020-03-02-20200302regressiondiscontinuity/",
@@ -68,20 +85,5 @@
     "categories": [],
     "preview": "posts/2020-02-20-afldistance/afldistance_files/figure-html5/unnamed-chunk-2-1.png",
     "last_modified": "2020-02-28T15:00:48-05:00"
-  },
-  {
-    "path": "posts/2020-02-20-test2/",
-    "title": "Test2",
-    "description": "A short description of the post.",
-    "author": [
-      {
-        "name": "Unknown",
-        "url": {}
-      }
-    ],
-    "date": "2020-02-20",
-    "categories": [],
-    "preview": {},
-    "last_modified": "2020-02-20T12:18:15-05:00"
   }
 ]
